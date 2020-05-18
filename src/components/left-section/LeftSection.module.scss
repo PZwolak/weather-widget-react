@@ -1,0 +1,17 @@
+@import '../../globals.scss';
+
+.leftSectionContainer{
+    max-width:140px;
+    .propertyElement{
+        border-bottom: 2px solid rgba($primary-color, 0.2);
+
+        p{
+            margin:0;
+            color: $primary-color;
+            font-weight: 600;
+        }
+        display: flex;
+        justify-content: center;
+        align-items: center;
+     }
+}
