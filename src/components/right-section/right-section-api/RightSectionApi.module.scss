@@ -1,0 +1,29 @@
+.rightSectionContainer{
+    display:flex;
+    .hourlyItem{
+        &__day{
+            height: 34px;
+        };
+        &__hour{
+            height: 60px;
+        };
+        &__icon{
+            height: 70px;
+        };
+        &__temperature{
+            height: 220px;
+        };
+        &__rainfall{
+            height: 120px;
+        };
+        &__windDirection{
+            height: 120px;
+        };
+        &__windSpeed{
+            height: 100px;
+        };
+        &__pressure{
+            height: 200px;
+        }
+    }
+}
