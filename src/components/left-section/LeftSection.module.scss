@@ -1,9 +1,12 @@
 @import '../../globals.scss';
 
 .leftSectionContainer{
-    max-width:140px;
+    width:100%;
+
     .propertyElement{
+        padding:0 15px;
         border-bottom: 2px solid rgba($primary-color, 0.2);
+        border-right: 2px solid rgba($primary-color, 0.3);
 
         p{
             margin:0;

@@ -1,29 +1,123 @@
+@import '../../../globals.scss';
+
+@mixin linesAndPoints {
+    &Inner{
+        width:100%;
+        position:absolute;
+        &Number{
+            >span{
+                font-weight: 700;
+                font-size:1.75rem;
+            }
+        }
+        &Graphics{
+            display: flex;
+            justify-content: center;
+            &Circle{
+                width:18px;
+                height:18px;
+                border:2px solid #000;
+                border-radius: 50%;
+            }
+        }
+    }
+}
+
 .rightSectionContainer{
     display:flex;
     .hourlyItem{
+        // color: $primary-color;
+        width:125px;
+        >div{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            border-right: 2px solid rgba($primary-color,0.1);
+        }
         &__day{
             height: 34px;
+            >span{
+                font-weight: 600;
+            }
         };
         &__hour{
             height: 60px;
+            >span{
+                font-weight:700;
+                font-size:1.25rem;
+            }
         };
         &__icon{
             height: 70px;
+            >img{
+                max-height: 85px;
+            }
         };
         &__temperature{
             height: 220px;
+            position:relative;
+            @include linesAndPoints();
         };
         &__rainfall{
             height: 120px;
+            &Inner{
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                width:100%;
+                height: 100%;
+                &Number{
+                    >span{
+                        font-weight: 600;
+                        font-size:1.25rem;
+                    }
+                }
+                &Graphic{
+                    background-color: $rain-color;
+                }
+            }
+
+            
         };
         &__windDirection{
             height: 120px;
+            background-color:rgba($primary-color,0.1);
+            border-right:2px solid #fff !important;
+            flex-direction: column;
+            &Icon{
+                margin:15px 0;
+                >img{
+                    max-width:50px;
+                }
+            }
+            &Text{
+                font-weight:600;
+            }
         };
         &__windSpeed{
+            flex-direction: column;
             height: 100px;
+            background-color:rgba($primary-color,0.1);
+            border-right:2px solid #fff !important;
+            &Text{
+                font-weight:600;
+            }
+            &Number{
+                font-weight:600;
+                font-size: 1.25rem;
+            }
         };
         &__pressure{
             height: 200px;
+            @include linesAndPoints();
+            &Inner{
+                &Number{
+                    margin-bottom:10px;
+                    >span{
+                        font-size:1.25rem;
+                    }
+                }
+            }
         }
     }
 }
