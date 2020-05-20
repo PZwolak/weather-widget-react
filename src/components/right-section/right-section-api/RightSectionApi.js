@@ -1,6 +1,9 @@
 import React from 'react';
 import styles from './RightSectionApi.module.scss';
-import compassIcon from '../../../img/compass-arrow.png'
+import compassIcon from '../../../img/compass-arrow.png';
+import cx from 'classnames';
+import { sliderFunction } from './sliderFunction';
+import Arrows from './Arrows';
 
 // main classes for RightSectionApi component
 const rightSection = "rightSection";
@@ -15,20 +18,20 @@ const RightSectionApi = (props) => {
     // on first render result from API is undefined so this condition protect against destroy whole APP
     if (props.weatherResults.hourly !== undefined) {
 
+        // settings and functions responsible for smooth dragging content
+        sliderFunction();
+
         // request from API saved in variables below
         const weatherHourly = props.weatherResults.hourly;
 
-        // const rainFallArr = weatherHourly.map(el => {
-        //     if (el.rain === undefined) {
+        // set max temperature for possibility to set yellow lines
+        const tempArr = weatherHourly.map(el => el.temp);
+        const tempMax = Math.floor(Math.max(...tempArr));
 
-        //     } else {
-        //         return parseInt(el.rain['1h']);
+        // set max pressure for possibility to set black lines
+        const pressArr = weatherHourly.map(el => el.pressure);
+        const pressMax = Math.floor(Math.max(...pressArr));
 
-        //     }
-        // });
-        // console.log(rainFallArr)
-        // const rainFall = Math.max(...rainFallArr)
-        // console.log(rainFall);
 
         // main array which contain arranged elements for displayin in return as result
         hours = weatherHourly.map(el => {
@@ -55,14 +58,17 @@ const RightSectionApi = (props) => {
             const imgAlt = el.weather[0].main
 
             // set correct temperature position
-            let tempPosition;
-            if (Math.round(el.temp) > 0) {
-                tempPosition = 50 - Math.round(el.temp);
-            } else if (Math.round(el.temp) === 0) {
-                tempPosition = 50;
-            } else {
-                tempPosition = 50 + Math.round(el.temp);
-            }
+            const elTemp = Math.floor(el.temp);
+            const tempPeak = tempMax / (tempMax + elTemp);
+            const tempCur = elTemp / (tempMax + elTemp);
+            const tempPosition = tempCur * 300 / tempPeak;
+
+            // set correct pressure position
+            const elPress = Math.floor(el.pressure);
+            const pressPeak = pressMax / (pressMax + elPress);
+            const pressCur = elPress / (pressMax + elPress);
+            const pressPosition = pressCur * 1500 / pressPeak;
+
 
             // set correct rain height
             let rainFall;
@@ -110,8 +116,10 @@ const RightSectionApi = (props) => {
 
 
 
+
             // main arranged element which return one whole structure for one hour
             return (
+
                 <div key={el.dt} className={styles.hourlyItem}>
                     <div className={styles.hourlyItem__day}>
                         <span>{day}</span>
@@ -123,14 +131,15 @@ const RightSectionApi = (props) => {
                         <img src={imgUrl} alt={imgAlt} />
                     </div>
                     <div className={styles.hourlyItem__temperature}>
-                        <div style={{ "top": `${tempPosition}%` }} className={styles.hourlyItem__temperatureInner}>
+                        <div className={styles.hourlyItem__temperatureInner}>
                             <div className={styles.hourlyItem__temperatureInnerNumber}>
-                                <span>{Math.round(el.temp)}°</span>
+                                <span>{elTemp}°</span>
                             </div>
                             <div className={styles.hourlyItem__temperatureInnerGraphics}>
                                 <div className={styles.hourlyItem__temperatureInnerGraphicsCircle}>
 
                                 </div>
+                                <div style={{ "height": `${tempPosition - 200}px` }} className={styles.hourlyItem__temperatureInnerGraphicsLine}></div>
                             </div>
                         </div>
                     </div>
@@ -165,15 +174,19 @@ const RightSectionApi = (props) => {
                             <div className={styles.hourlyItem__pressureInnerGraphics}>
                                 <div className={styles.hourlyItem__pressureInnerGraphicsCircle}>
                                 </div>
+                                <div style={{ "height": `${pressPosition - 1400}px` }} className={styles.hourlyItem__pressureInnerGraphicsLine}></div>
                             </div>
                         </div>
                     </div>
                 </div>
             )
         });
-
     }
-    return <div className={rightSection, rightSectionContainer}>{hours}</div>;
+    return (
+
+        < div className={cx(rightSection, rightSectionContainer)} > {hours}</div >
+
+    );
 }
 
 export default RightSectionApi;
