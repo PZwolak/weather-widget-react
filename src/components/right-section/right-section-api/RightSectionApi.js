@@ -3,7 +3,7 @@ import styles from './RightSectionApi.module.scss';
 import compassIcon from '../../../img/compass-arrow.png';
 import cx from 'classnames';
 import { sliderFunction } from './sliderFunction';
-import Arrows from './Arrows';
+// import Arrows from './Arrows';
 
 // main classes for RightSectionApi component
 const rightSection = "rightSection";

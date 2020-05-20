@@ -20,7 +20,6 @@ export default class RightSection extends Component {
         fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&%20exclude=hourly&appid=${appid}&lang=${lang}&units=${units}`)
             .then(res => res.json())
             .then(json => this.setState({ weather: json }));
-        console.log(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&%20exclude=hourly&appid=${appid}&lang=${lang}&units=${units}`);
     }
     render() {
 

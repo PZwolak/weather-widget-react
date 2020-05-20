@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './LeftSection.module.scss';
-
+import cx from 'classnames';
 
 const LeftSection = () => {
 
@@ -30,7 +30,7 @@ const LeftSection = () => {
     })
 
     return (
-        <div className={leftSection, leftSectionContainer}>{leftSectionProperties}</div>
+        <div className={cx(leftSection, leftSectionContainer)}>{leftSectionProperties}</div>
     );
 }
 
