@@ -7,7 +7,7 @@ import RightSection from './components/right-section/RightSection';
 function App() {
   return (
     <div className="App">
-      <div className="container mainSection">
+      <div className=" mainSection">
         <LeftSection />
         <RightSection />
       </div>

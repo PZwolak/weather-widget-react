@@ -2,9 +2,11 @@
 
 .leftSectionContainer{
     width:100%;
+    max-width:150px;
 
     .propertyElement{
         padding:0 15px;
+        
         border-bottom: 2px solid rgba($primary-color, 0.2);
         border-right: 2px solid rgba($primary-color, 0.3);
 
