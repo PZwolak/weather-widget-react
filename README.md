@@ -24,4 +24,4 @@
 
 
 ### Project available is in link below:
-#### [https://pzwolak.github.io/weather-widget-react/]
+## [https://pzwolak.github.io/weather-widget-react/]
